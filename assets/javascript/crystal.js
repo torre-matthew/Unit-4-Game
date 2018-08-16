@@ -1,21 +1,21 @@
 $("document").ready(function (){
 // give each crystal a randomly generated number between 1-6
-let blueVal = Math.floor((Math.random()*6) + 1);
-let greenVal = Math.floor((Math.random()*6) + 1);
-let purpleVal = Math.floor((Math.random()*6) + 1);
-let redVal = Math.floor((Math.random()*6) + 1); 
+var blueVal = Math.floor((Math.random()*6) + 1);
+var greenVal = Math.floor((Math.random()*6) + 1);
+var purpleVal = Math.floor((Math.random()*6) + 1);
+var redVal = Math.floor((Math.random()*6) + 1); 
 // create four variables to use as a multiplier that will determin how many times one of the crystals will need to be clicked to get the randum number.
-let clicks1 = Math.floor((Math.random()*3) + 1);
-let clicks2 = Math.floor((Math.random()*3) + 1);
-let clicks3 = Math.floor((Math.random()*3) + 1);
-let clicks4 = Math.floor((Math.random()*3) + 1);
+var clicks1 = Math.floor((Math.random()*3) + 1);
+var clicks2 = Math.floor((Math.random()*3) + 1);
+var clicks3 = Math.floor((Math.random()*3) + 1);
+var clicks4 = Math.floor((Math.random()*3) + 1);
 
 // Have the randum number that user is trying to guess display as the sum of the equation above
-let targetNum = blueVal*clicks1 + greenVal*clicks2 + purpleVal*clicks3 + redVal*clicks4;
+var targetNum = blueVal*clicks1 + greenVal*clicks2 + purpleVal*clicks3 + redVal*clicks4;
 
-let userTotal = 0;
-let wins = 0;
-let losses = 0;
+var userTotal = 0;
+var wins = 0;
+var losses = 0;
 console.log("blue " + blueVal);
 console.log("green " + greenVal);
 console.log("purple " + purpleVal);
@@ -26,19 +26,27 @@ $("#user-total").text(userTotal);
 $(".wins").text(wins);
 $(".losses").text(losses);
 
+var play = {
+
+}
+
 //These four click handlers assign values to the crystals and have them change the total score when clicked.
-$(".crystal-blue").on("click", function () {
+$(".crystal-blue").on("click", function blueClicks() {
 userTotal += blueVal;
 $("#user-total").text(userTotal);
 if (userTotal === targetNum) {
     $("#user-total").text(userTotal);
     alert("yous a bad mothafucker");
+    $(".wins").text(wins);
 }else if (userTotal > targetNum) {
+    $("#user-total").text(userTotal);
     alert("LOSER!!!!!");
+    losses++;
+    $(".losses").text(losses);
 }
 });
 
-$(".crystal-green").on("click", function () {
+$(".crystal-green").on("click", function  greenClicks() {
 userTotal += greenVal;
 $("#user-total").text(userTotal);
 if (userTotal === targetNum) {
@@ -49,7 +57,7 @@ if (userTotal === targetNum) {
 }
 });
 
-$(".crystal-purple").on("click", function () {
+$(".crystal-purple").on("click", function purpleClicks() {
 userTotal += purpleVal;
 $("#user-total").text(userTotal);
 if (userTotal === targetNum) {
@@ -60,7 +68,7 @@ if (userTotal === targetNum) {
 }
 });
 
-$(".crystal-red").on("click", function () {
+$(".crystal-red").on("click", function redClicks() {
 userTotal += redVal;
 $("#user-total").text(userTotal);
 if (userTotal === targetNum) {
@@ -69,17 +77,34 @@ if (userTotal === targetNum) {
 }else if (userTotal > targetNum) {
     alert("LOSER!!!!!");
 }
+
 });
+
+// function scoreLogic () {
+//     $(".crystal-blue").on("click", blueClicks());
+//     $(".crystal-green").on("click", greenClicks());
+//     $(".crystal-red").on("click", redClicks());
+//     $(".crystal-purple").on("click", purpleClicks());
+
+//     if (userTotal === targetNum) {
+//         $("#user-total").text(userTotal);
+//         alert("you's a bad mothafucker");
+//         wins++;
+//         $(".wins").text(wins);
+//     }else if (userTotal > targetNum) {
+//         alert("LOSER!!!!!");
+//         losses++;
+//         $(".losses").text(losses);
+//     }
  
+// }
+
+// scoreLogic();
 
 
 
 
 
-
-// clicking a crystal displays the value of that crystal on the page
-// value of the crystals are added together and displayed on the page
-    //this will need to show the number incrementing as crystals are clicked
 
 // if the sum that is calculating as user clicks a crystal equals randum number, they win
     // reset everything and ++ the win in this scenario
