@@ -26,58 +26,56 @@ $("#user-total").text(userTotal);
 $(".wins").text(wins);
 $(".losses").text(losses);
 
-var play = {
+function scoringLogic () {
+    if (userTotal === targetNum) {
+        winnerNewGame();
+    }else if (userTotal > targetNum) {
+        loserNewGame();
+    }
+}
 
+function winnerNewGame () {
+    $("#user-total").text(userTotal);
+    wins++;
+    $(".wins").text(wins);
+    alert("yous a bad mothafucker");
+    $("#randnum").text(targetNum);
+    $("#user-total").text("0");
+}
+
+function loserNewGame () {
+    $("#user-total").text(userTotal);
+    $(".losses").text(losses);
+    losses++;
+    alert("LOSER!!!!!");
+    $("#randnum").text(targetNum);
+    $("#user-total").text("0");
+    
 }
 
 //These four click handlers assign values to the crystals and have them change the total score when clicked.
 $(".crystal-blue").on("click", function blueClicks() {
-userTotal += blueVal;
 $("#user-total").text(userTotal);
-if (userTotal === targetNum) {
-    $("#user-total").text(userTotal);
-    alert("yous a bad mothafucker");
-    $(".wins").text(wins);
-}else if (userTotal > targetNum) {
-    $("#user-total").text(userTotal);
-    alert("LOSER!!!!!");
-    losses++;
-    $(".losses").text(losses);
-}
+userTotal += blueVal;
+scoringLogic();
 });
 
 $(".crystal-green").on("click", function  greenClicks() {
 userTotal += greenVal;
 $("#user-total").text(userTotal);
-if (userTotal === targetNum) {
-    $("#user-total").text(userTotal);
-    alert("yous a bad mothafucker");
-}else if (userTotal > targetNum) {
-    alert("LOSER!!!!!");
-}
+scoringLogic();
 });
 
 $(".crystal-purple").on("click", function purpleClicks() {
 userTotal += purpleVal;
 $("#user-total").text(userTotal);
-if (userTotal === targetNum) {
-    $("#user-total").text(userTotal);
-    alert("yous a bad mothafucker");
-}else if (userTotal > targetNum) {
-    alert("LOSER!!!!!");
-}
+scoringLogic();
 });
 
 $(".crystal-red").on("click", function redClicks() {
 userTotal += redVal;
 $("#user-total").text(userTotal);
-if (userTotal === targetNum) {
-    $("#user-total").text(userTotal);
-    alert("yous a bad mothafucker");
-}else if (userTotal > targetNum) {
-    alert("LOSER!!!!!");
-}
-
+scoringLogic();
 });
 
 // function scoreLogic () {
