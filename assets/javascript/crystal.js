@@ -21,10 +21,24 @@ console.log("green " + greenVal);
 console.log("purple " + purpleVal);
 console.log("red " + redVal);
 
-$("#randnum").text(targetNum);
-$("#user-total").text(userTotal);
+// var numbers = {
+//     blueVal: Math.floor((Math.random()*6) + 1),
+//     greenVal: Math.floor((Math.random()*6) + 1),
+//     purpleVal: Math.floor((Math.random()*6) + 1),
+//     redVal: Math.floor((Math.random()*6) + 1),
+//     clicks1: Math.floor((Math.random()*3) + 1),
+//     clicks2: Math.floor((Math.random()*3) + 1),
+//     clicks3: Math.floor((Math.random()*3) + 1),
+//     clicks4: Math.floor((Math.random()*3) + 1), 
+//     targetNum: numbers.blueVal*numbers.clicks1 + numbers.greenVal*numbers.clicks2 + numbers.purpleVal*numbers.clicks3 + numbers.redVal*numbers.clicks4,
+// }
+// console.log(numbers.targetNum);
+
 $(".wins").text(wins);
 $(".losses").text(losses);
+
+    $("#randnum").text(targetNum);
+    $("#user-total").text(userTotal);
 
 function scoringLogic () {
     if (userTotal === targetNum) {
@@ -36,77 +50,50 @@ function scoringLogic () {
 
 function winnerNewGame () {
     $("#user-total").text(userTotal);
+    confirm("Great Job!! Play again?");
     wins++;
     $(".wins").text(wins);
-    alert("yous a bad mothafucker");
-    $("#randnum").text(targetNum);
-    $("#user-total").text("0");
+    userTotal = 0;
+    $("#user-total").text(userTotal);
 }
 
 function loserNewGame () {
     $("#user-total").text(userTotal);
-    $(".losses").text(losses);
+    confirm("Sorry, " + userTotal + " is too high. Play again?" );
     losses++;
-    alert("LOSER!!!!!");
+    $(".losses").text(losses);
+    userTotal = 0;
+    $("#user-total").text(userTotal);
+    targetNum = blueVal*clicks1 + greenVal*clicks2 + purpleVal*clicks3 + redVal*clicks4;
     $("#randnum").text(targetNum);
-    $("#user-total").text("0");
-    
 }
 
 //These four click handlers assign values to the crystals and have them change the total score when clicked.
+
+
 $(".crystal-blue").on("click", function blueClicks() {
-$("#user-total").text(userTotal);
-userTotal += blueVal;
-scoringLogic();
+    userTotal += blueVal;
+    $("#user-total").text(userTotal);
+    scoringLogic();
 });
 
 $(".crystal-green").on("click", function  greenClicks() {
-userTotal += greenVal;
-$("#user-total").text(userTotal);
-scoringLogic();
+    userTotal += greenVal;
+    $("#user-total").text(userTotal);
+    scoringLogic();
 });
 
 $(".crystal-purple").on("click", function purpleClicks() {
-userTotal += purpleVal;
-$("#user-total").text(userTotal);
-scoringLogic();
+    userTotal += purpleVal;
+    $("#user-total").text(userTotal);
+    scoringLogic();
 });
 
 $(".crystal-red").on("click", function redClicks() {
-userTotal += redVal;
-$("#user-total").text(userTotal);
-scoringLogic();
+    userTotal += redVal;
+    $("#user-total").text(userTotal);
+    scoringLogic();
 });
 
-// function scoreLogic () {
-//     $(".crystal-blue").on("click", blueClicks());
-//     $(".crystal-green").on("click", greenClicks());
-//     $(".crystal-red").on("click", redClicks());
-//     $(".crystal-purple").on("click", purpleClicks());
-
-//     if (userTotal === targetNum) {
-//         $("#user-total").text(userTotal);
-//         alert("you's a bad mothafucker");
-//         wins++;
-//         $(".wins").text(wins);
-//     }else if (userTotal > targetNum) {
-//         alert("LOSER!!!!!");
-//         losses++;
-//         $(".losses").text(losses);
-//     }
- 
-// }
-
-// scoreLogic();
-
-
-
-
-
-
-// if the sum that is calculating as user clicks a crystal equals randum number, they win
-    // reset everything and ++ the win in this scenario
-// if the sum this calculated as the user clicks a crystal is greater than randum number they lose
-    // reset everthing and ++ loses in this scenario.
 
 });
